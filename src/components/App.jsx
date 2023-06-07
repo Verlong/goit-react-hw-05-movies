@@ -6,6 +6,7 @@ import MovieDetails from './movie-detail/movie-details';
 import Reviews from './reviews/reviews';
 import Cast from './cast/cast';
 import SharedLayout from './shared-layout/SharedLayout';
+import NotFound from 'pages/not-found/NotFound';
 
 export const App = () => {
   return (
@@ -19,6 +20,7 @@ export const App = () => {
             <Route path="reviews" element={<Reviews />} />
           </Route>
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );
