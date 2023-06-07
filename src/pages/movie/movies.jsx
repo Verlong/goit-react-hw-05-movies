@@ -1,17 +1,20 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Movies = () => {
+  //запрос
+  //useEffect(()=> {http query? if it nead}, [])
+
   return (
     <>
-      <ul>
-        <li>
-          <Link to="cast">Cast</Link>
-        </li>
-        <li>
-          <Link to="reviews">Reviews</Link>
-        </li>
-      </ul>
-      <Outlet />
+      {['mov-1', 'mov-2', 'mov-3', 'mov-4', 'mov-5'].map(movie => {
+        return (
+          <Link key={movie} to={`${movie}`}>
+            <ul>
+              <li>{movie}</li>
+            </ul>
+          </Link>
+        );
+      })}
     </>
   );
 };
