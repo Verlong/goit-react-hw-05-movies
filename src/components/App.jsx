@@ -8,7 +8,6 @@ import Cast from './cast/cast';
 import SharedLayout from './shared-layout/SharedLayout';
 import NotFound from 'pages/not-found/NotFound';
 import { lazy } from 'react';
-import { Suspense } from 'react';
 
 const Home = lazy(() => import('../pages/home/home'));
 const Movies = lazy(() => import('../pages/movie/movies'));

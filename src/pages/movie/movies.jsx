@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { Link, useSearchParams, useLocation } from 'react-router-dom';
 // import location from '../../components/movie-detail/movie-details';
 const Movies = () => {
-  //запрос
-  //useEffect(()=> {http query? if it nead}, [])
   const [movies, setMovies] = useState([
     'mov1',
     'mov2',
@@ -12,20 +10,20 @@ const Movies = () => {
     'mov5',
     'mov6',
   ]);
-
-  const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
-  const movieId = searchParams.get('movieId') ?? '';
+  const [page, setPage] = useState(1);
+  const [isVissible, setIsVissible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [, setError] = useState(false);
 
+  const movieId = searchParams.get('movieId') ?? '';
+  const location = useLocation();
   const updateQueryString = event => {
     const movieIdValue = event.target.value;
     if (movieIdValue === '') {
       return setSearchParams({});
     }
     setSearchParams({ movieId: movieIdValue });
-
-    // const nextParams = name !== '' ? { name } : {};
-    // setSearchParams(nextParams);
   };
 
   const visibleMovie = movies.filter(movie => movie.includes(movieId));
