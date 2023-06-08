@@ -1,11 +1,15 @@
-import { Link, useParams, Outlet } from 'react-router-dom';
+import { useRef } from 'react';
+import { Link, useParams, Outlet, useLocation } from 'react-router-dom';
 const MovieDetails = () => {
+  const location = useLocation();
+  const backLinkLocationRef = useRef(location.state?.from ?? '/movies');
   const { movieId } = useParams();
   //запрос
   //useEffect(()=> {http query? if it nead}, [])
 
   return (
     <div>
+      <Link to={backLinkLocationRef.current}>Back to main </Link>
       <div>
         <img src="poster_path" alt="poster img" />
         <h2>Original_title {movieId}</h2>

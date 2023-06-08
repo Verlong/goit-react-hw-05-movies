@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
-
+import { Link, useSearchParams, useLocation } from 'react-router-dom';
+// import location from '../../components/movie-detail/movie-details';
 const Movies = () => {
   //запрос
   //useEffect(()=> {http query? if it nead}, [])
@@ -12,6 +12,8 @@ const Movies = () => {
     'mov5',
     'mov6',
   ]);
+
+  const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
   const movieId = searchParams.get('movieId') ?? '';
 
@@ -35,7 +37,7 @@ const Movies = () => {
       </button>
       {visibleMovie.map(movie => {
         return (
-          <Link key={movie} to={`${movie}`}>
+          <Link key={movie} to={`${movie}`} state={{ from: location }}>
             <ul>
               <li>{movie}</li>
             </ul>
