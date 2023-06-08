@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { Suspense } from 'react';
 import { Link, useParams, Outlet, useLocation } from 'react-router-dom';
 const MovieDetails = () => {
   const location = useLocation();
@@ -35,7 +36,9 @@ const MovieDetails = () => {
           </li>
         </ul>
       </div>
-      <Outlet />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };

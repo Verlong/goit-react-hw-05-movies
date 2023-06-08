@@ -1,12 +1,20 @@
 // import PropTypes from 'prop-types';
 import { Routes, Route } from 'react-router-dom';
-import Movies from '../pages/movie/movies';
-import Home from '../pages/home/home';
-import MovieDetails from './movie-detail/movie-details';
+// import Movies from '../pages/movie/movies';
+// import Home from '../pages/home/home';
+// import MovieDetails from './movie-detail/movie-details';
 import Reviews from './reviews/reviews';
 import Cast from './cast/cast';
 import SharedLayout from './shared-layout/SharedLayout';
 import NotFound from 'pages/not-found/NotFound';
+import { lazy } from 'react';
+import { Suspense } from 'react';
+
+const Home = lazy(() => import('../pages/home/home'));
+const Movies = lazy(() => import('../pages/movie/movies'));
+const MovieDetails = lazy(() =>
+  import('../components/movie-detail/movie-details')
+);
 
 export const App = () => {
   return (
