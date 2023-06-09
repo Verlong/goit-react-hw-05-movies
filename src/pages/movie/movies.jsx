@@ -63,3 +63,14 @@ const Movies = () => {
   );
 };
 export default Movies;
+
+//  <img
+//    src={
+//      movie.poster_path
+//        ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
+//        : `http://www.suryalaya.org/images/no_image.jpg`
+//    }
+//    width={320}
+//    loading="lazy"
+//    alt={movie.original_title}
+//  />;

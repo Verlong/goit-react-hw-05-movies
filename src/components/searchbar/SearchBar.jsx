@@ -1,34 +1,37 @@
 import React, { useState } from 'react';
-import css from './SearchBar.module.css';
+// import PropTypes from 'prop-types';
+// import css from './SearchBar.module.css';
 
-const Searchbar = ({ getInputValue }) => {
+const Searchbar = ({ onSubmit }) => {
   const [input, setInput] = useState('');
 
-  const search = e => {
-    e.preventDefault();
-    getInputValue(input);
-    setInput('');
-  };
+  // const handleSubmit = e => {
+  //   e.preventDefault();
+  //   onSubmit(input);
+  //   setInput('');
+  // };
 
-  const handleChange = e => {
-    setInput(e.target.value);
-  };
+  // const handleChange = e => {
+  //   setInput(e.target.value);
+  // };
 
   return (
-    <form className={css.form} onSubmit={search}>
-      <button type="submit" className={css.button}>
-        <span className={css.label}>Search</span>
+    <form onSubmit={onSubmit}>
+      {/* <form onSubmit={handleSubmit}> */}
+      <button type="submit">
+        <span>Search</span>
       </button>
-
       <input
-        name="input"
         type="text"
+        name="movieName"
+        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+        title="May contain only letters, apostrophe, dash and spaces. For example moon"
+        required
         autoComplete="off"
-        onChange={handleChange}
-        value={input}
         autoFocus
-        placeholder="Search movie"
-        className={css.input}
+        placeholder="Search movie..."
+        // alue={input}
+        // onChange={handleChange}
       />
     </form>
   );
