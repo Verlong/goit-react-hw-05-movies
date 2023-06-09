@@ -1,48 +1,65 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { Link, useSearchParams, useLocation } from 'react-router-dom';
 // import location from '../../components/movie-detail/movie-details';
+import Loader from 'components/loader/Loader';
+
+import { useState, useEffect } from 'react';
+import { searchMovies } from 'api/get-api-key';
+// import { useSearchParams, useLocation } from 'react-router-dom';
+import Searchbar from 'components/searchbar/SearchBar';
+
 const Movies = () => {
-  const [movies, setMovies] = useState([
-    'mov1',
-    'mov2',
-    'mov3',
-    'mov4',
-    'mov5',
-    'mov6',
-  ]);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [page, setPage] = useState(1);
-  const [isVissible, setIsVissible] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [, setError] = useState(false);
-
-  const movieId = searchParams.get('movieId') ?? '';
   const location = useLocation();
-  const updateQueryString = event => {
-    const movieIdValue = event.target.value;
-    if (movieIdValue === '') {
-      return setSearchParams({});
-    }
-    setSearchParams({ movieId: movieIdValue });
-  };
+  const [searchParams, setSearchParams] = useSearchParams();
+  const movieName = searchParams.get('movieName') ?? '';
+  const [moviesList, setMoviesList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
 
-  const visibleMovie = movies.filter(movie => movie.includes(movieId));
-  return (
-    <>
-      <input type="text" value={movieId} onChange={updateQueryString} />
-      <button type="submit" onClick={() => setSearchParams({ c: 'hello' })}>
-        🔎Search
-      </button>
-      {visibleMovie.map(movie => {
-        return (
-          <Link key={movie} to={`${movie}`} state={{ from: location }}>
-            <ul>
-              <li>{movie}</li>
-            </ul>
-          </Link>
+  useEffect(() => {
+    if (movieName === '') {
+      return;
+    }
+    setMoviesList([]);
+    setIsLoading(true);
+
+    searchMovies(movieName).then(data => {
+      if (!data.results.length) {
+        setIsLoading(false);
+        setError(true);
+        return console.log(
+          'There is no movies with this request. Please, try again'
         );
-      })}
-    </>
+      }
+      setError(false);
+      setMoviesList(data.results);
+      setIsLoading(false);
+    });
+  }, [movieName]);
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const searchForm = e.currentTarget;
+    setSearchParams({ movieName: searchForm.elements.movieName.value });
+    searchForm.reset();
+  };
+  return (
+    <main>
+      <Searchbar onSubmit={handleSubmit} />
+      {error && <p>We can't find any movie with name</p>}
+      <ul>
+        {moviesList.map(movie => {
+          return (
+            <li key={movie.id}>
+              <Link to={`/movies/${movie.id}`} state={{ from: location }}>
+                {movie.original_title || movie.name}
+              </Link>
+            </li>
+          );
+        })}
+        {isLoading && <Loader />}
+      </ul>
+    </main>
   );
 };
 export default Movies;
