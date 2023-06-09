@@ -1,24 +1,12 @@
-import React, { useState } from 'react';
-// import PropTypes from 'prop-types';
-// import css from './SearchBar.module.css';
+import React from 'react';
+import css from './SearchBar.module.css';
 
 const Searchbar = ({ onSubmit }) => {
-  const [input, setInput] = useState('');
-
-  // const handleSubmit = e => {
-  //   e.preventDefault();
-  //   onSubmit(input);
-  //   setInput('');
-  // };
-
-  // const handleChange = e => {
-  //   setInput(e.target.value);
-  // };
+  // const [input, setInput] = useState('');
 
   return (
-    <form onSubmit={onSubmit}>
-      {/* <form onSubmit={handleSubmit}> */}
-      <button type="submit">
+    <form onSubmit={onSubmit} className={css.form}>
+      <button type="submit" className={css.searchBtn}>
         <span>Search</span>
       </button>
       <input
@@ -30,8 +18,7 @@ const Searchbar = ({ onSubmit }) => {
         autoComplete="off"
         autoFocus
         placeholder="Search movie..."
-        // alue={input}
-        // onChange={handleChange}
+        className={css.searchInput}
       />
     </form>
   );

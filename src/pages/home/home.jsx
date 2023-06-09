@@ -16,7 +16,7 @@ const Home = () => {
       setIsLoading(false);
     });
   }, []);
-
+  const path = 'https://image.tmdb.org/t/p/w300';
   return (
     <main>
       <h1>Wellcome to Movie Land</h1>
@@ -26,6 +26,7 @@ const Home = () => {
           <li key={movie.id}>
             <Link to={`/movies/${movie.id}`} state={{ from: location }}>
               {movie.original_title || movie.name}
+              <img src={path + movie.poster_path} alt={movie.original_title} />
             </Link>
           </li>
         ))}

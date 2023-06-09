@@ -41,8 +41,12 @@ const Movies = () => {
     e.preventDefault();
     const searchForm = e.currentTarget;
     setSearchParams({ movieName: searchForm.elements.movieName.value });
-    searchForm.reset();
+    // searchForm.reset();
   };
+
+  // console.log(moviesList);
+  const path = 'https://image.tmdb.org/t/p/w300';
+
   return (
     <main>
       <Searchbar onSubmit={handleSubmit} />
@@ -52,6 +56,10 @@ const Movies = () => {
           return (
             <li key={movie.id}>
               <Link to={`/movies/${movie.id}`} state={{ from: location }}>
+                <img
+                  src={path + movie.poster_path}
+                  alt={movie.original_title}
+                />
                 {movie.original_title || movie.name}
               </Link>
             </li>
@@ -63,14 +71,3 @@ const Movies = () => {
   );
 };
 export default Movies;
-
-//  <img
-//    src={
-//      movie.poster_path
-//        ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
-//        : `http://www.suryalaya.org/images/no_image.jpg`
-//    }
-//    width={320}
-//    loading="lazy"
-//    alt={movie.original_title}
-//  />;

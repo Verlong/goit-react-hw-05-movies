@@ -1,8 +1,5 @@
-// import PropTypes from 'prop-types';
 import { Routes, Route } from 'react-router-dom';
-// import Movies from '../pages/movie/movies';
-// import Home from '../pages/home/home';
-// import MovieDetails from './movie-detail/movie-details';
+
 import Reviews from './reviews/reviews';
 import Cast from './cast/cast';
 import SharedLayout from './shared-layout/SharedLayout';

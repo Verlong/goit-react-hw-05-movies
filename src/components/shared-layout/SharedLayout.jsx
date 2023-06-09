@@ -1,15 +1,20 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
+import css from './SharedLayot.module.css';
 const SharedLayout = () => {
   return (
-    <div>
-      <nav>
-        <ul>
+    <div className={css.container}>
+      <nav className={css.navContainer}>
+        <ul className={css.navList}>
           <li>
-            <NavLink to="/">🏠Home</NavLink>
+            <NavLink to="/" className={css.navLink}>
+              Home
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/movies">🎬Movie</NavLink>
+            <NavLink to="/movies" className={css.navLink}>
+              Movie
+            </NavLink>
           </li>
         </ul>
       </nav>
@@ -18,7 +23,7 @@ const SharedLayout = () => {
           <Outlet />
         </Suspense>
       </main>
-      <footer>Footer</footer>
+      {/* <footer className={css.footer}>Made by Maryna Bonko</footer> */}
     </div>
   );
 };
