@@ -6,9 +6,6 @@ const Searchbar = ({ onSubmit }) => {
 
   return (
     <form onSubmit={onSubmit} className={css.form}>
-      <button type="submit" className={css.searchBtn}>
-        <span>Search</span>
-      </button>
       <input
         type="text"
         name="movieName"
@@ -20,6 +17,9 @@ const Searchbar = ({ onSubmit }) => {
         placeholder="Search movie..."
         className={css.searchInput}
       />
+      <button type="submit" className={css.searchBtn}>
+        <span>Search</span>
+      </button>
     </form>
   );
 };

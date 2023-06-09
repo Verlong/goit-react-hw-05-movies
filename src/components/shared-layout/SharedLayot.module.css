@@ -1,6 +1,7 @@
 .container {
   background-color: #001f3f;
   color: aliceblue;
+  margin-bottom: 24px;
 }
 .navContainer {
   background-color: #001f3f;
@@ -12,6 +13,7 @@
   align-items: center;
   gap: 24px;
   list-style-type: none;
+  padding: 0;
 }
 .navLink {
   width: 10em;

@@ -1,10 +1,10 @@
 import { RotatingLines } from 'react-loader-spinner';
-
 import PropTypes from 'prop-types';
+import css from '../cast/cast.module.css';
 
 const Loader = ({ loading }) => {
   return (
-    <div>
+    <div className={css.loader}>
       <RotatingLines
         loading={loading}
         strokeColor="grey"

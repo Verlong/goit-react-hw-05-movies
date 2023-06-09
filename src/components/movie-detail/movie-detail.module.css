@@ -1,0 +1,147 @@
+body {
+  background-color: #001f3f;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin: 24px;
+  padding: 8px;
+}
+.backToMainLink {
+  --blue: #1479ea;
+  --light-blue: #149cea;
+  text-decoration: none;
+  font-size: 15px;
+  padding: 0.7em 2.7em;
+  margin: 8px;
+  width: 112px;
+  letter-spacing: 0.06em;
+  position: relative;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 0.6em;
+  overflow: hidden;
+  transition: all 0.3s;
+  line-height: 1.4em;
+  border: 2px solid var(--blue);
+  background: linear-gradient(
+    to right,
+    rgba(20, 121, 234, 0.1) 1%,
+    transparent 40%,
+    transparent 60%,
+    rgba(20, 121, 234, 0.1) 100%
+  );
+  color: var(--blue);
+  box-shadow: inset 0 0 10px rgba(20, 121, 234, 0.4),
+    0 0 9px 3px rgba(20, 121, 234, 0.1);
+}
+
+.backToMainLink:hover {
+  color: aliceblue;
+  box-shadow: inset 0 0 10px rgba(20, 121, 234, 0.6),
+    0 0 9px 3px rgba(20, 121, 234, 0.2);
+}
+
+.backToMainLink:before {
+  content: '';
+  position: absolute;
+  left: -4em;
+  width: 4em;
+  height: 100%;
+  top: 0;
+  transition: transform 0.4s ease-in-out;
+  background: linear-gradient(
+    to right,
+    transparent 1%,
+    rgba(20, 121, 234, 0.1) 40%,
+    rgba(20, 121, 234, 0.1) 60%,
+    transparent 100%
+  );
+}
+
+.backToMainLink:hover:before {
+  transform: translateX(15em);
+}
+
+.movieInfoWrapper {
+  display: flex;
+  /* flex-wrap: wrap; */
+  gap: 24px;
+}
+
+.movieInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.ganres {
+  display: flex;
+  gap: 16px;
+  list-style-type: none;
+  padding: 0;
+}
+
+.owerview {
+  width: 360px;
+}
+
+.navList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  list-style-type: none;
+}
+
+.navLink {
+  width: 10em;
+  position: relative;
+  height: 3.5em;
+  border: 3px ridge #149cea;
+  outline: none;
+  background-color: transparent;
+  color: white;
+  transition: 1s;
+  border-radius: 0.3em;
+  font-size: 16px;
+  font-weight: bold;
+  list-style-type: none;
+  padding: 8px;
+  text-decoration: none;
+}
+
+.navLink::after {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 3%;
+  width: 95%;
+  height: 40%;
+  background-color: #001f3f;
+  transition: 0.5s;
+  transform-origin: center;
+}
+
+.navLink::before {
+  content: '';
+  transform-origin: center;
+  position: absolute;
+  top: 80%;
+  left: 3%;
+  width: 95%;
+  height: 40%;
+  background-color: #001f3f;
+  transition: 0.5s;
+}
+
+.navLink:hover::before,
+.navLink:hover::after {
+  transform: scale(0);
+}
+
+.navLink:hover {
+  box-shadow: inset 0px 0px 25px #1479ea;
+}

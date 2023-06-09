@@ -1,12 +1,9 @@
-// import { useState } from 'react';
 import { Link, useSearchParams, useLocation } from 'react-router-dom';
-// import location from '../../components/movie-detail/movie-details';
 import Loader from 'components/loader/Loader';
-
 import { useState, useEffect } from 'react';
 import { searchMovies } from 'api/get-api-key';
-// import { useSearchParams, useLocation } from 'react-router-dom';
 import Searchbar from 'components/searchbar/SearchBar';
+import css from './movies.module.css';
 
 const Movies = () => {
   const location = useLocation();
@@ -48,19 +45,29 @@ const Movies = () => {
   const path = 'https://image.tmdb.org/t/p/w300';
 
   return (
-    <main>
-      <Searchbar onSubmit={handleSubmit} />
+    <main className={css.moviesContainer}>
+      <Searchbar className={css.searchbar} onSubmit={handleSubmit} />
       {error && <p>We can't find any movie with name</p>}
-      <ul>
+      <ul className={css.searchMovieList}>
         {moviesList.map(movie => {
           return (
-            <li key={movie.id}>
-              <Link to={`/movies/${movie.id}`} state={{ from: location }}>
+            <li className={css.searchMovieItem} key={movie.id}>
+              <Link
+                className={css.searchMovieLink}
+                to={`/movies/${movie.id}`}
+                state={{ from: location }}
+              >
                 <img
-                  src={path + movie.poster_path}
+                  className={css.searchMovieImg}
+                  src={
+                    movie.poster_path
+                      ? path + movie.poster_path
+                      : 'http://www.suryalaya.org/images/no_image.jpg'
+                  }
                   alt={movie.original_title}
+                  width={300}
                 />
-                {movie.original_title || movie.name}
+                {movie.title || movie.name}
               </Link>
             </li>
           );

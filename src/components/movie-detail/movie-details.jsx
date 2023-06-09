@@ -1,10 +1,9 @@
 import { useRef } from 'react';
 import { Suspense } from 'react';
 import { Link, useParams, Outlet, useLocation } from 'react-router-dom';
-// import { useParams, useLocation, Link, Outlet } from 'react-router-dom';
-
 import { useState, useEffect } from 'react';
 import { getMovieDetails } from 'api/get-api-key';
+import css from './movie-detail.module.css';
 
 const MovieDetails = () => {
   const [movieDetail, setMovieDetail] = useState({});
@@ -26,10 +25,23 @@ const MovieDetails = () => {
     vote_count,
   } = movieDetail;
 
+  const date = new Date(release_date);
+
+  const options = {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  };
+
+  const formattedDate = date.toLocaleDateString('en-US', options);
+  console.log(formattedDate);
+
   return (
-    <div>
-      <Link to={backLinkLocationRef.current}>Back to main </Link>
-      <div>
+    <div className={css.container}>
+      <Link to={backLinkLocationRef.current} className={css.backToMainLink}>
+        Back to main{' '}
+      </Link>
+      <div className={css.movieInfoWrapper}>
         <img
           src={
             poster_path
@@ -40,25 +52,30 @@ const MovieDetails = () => {
           loading="lazy"
           alt={original_title}
         />
-        <h2>{original_title}</h2>
-        <h3>{release_date}</h3>
-        <p>
-          {genres &&
-            genres.length &&
-            genres.map(({ id, name }) => <li key={id}>{name}</li>)}
-        </p>
-
-        <p>{overview}</p>
-        <h4>Vote total: {vote_count}</h4>
-        <h4>Average: {vote_average}</h4>
+        <div className={css.movieInfo}>
+          <h2>{original_title}</h2>
+          <h3>{formattedDate}</h3>
+          <ul className={css.ganres}>
+            {genres &&
+              genres.length &&
+              genres.map(({ id, name }) => <li key={id}>{name}</li>)}
+          </ul>
+          <p className={css.owerview}>{overview}</p>
+          <h4>Vote total: {vote_count}</h4>
+          <h4>Average: {vote_average}</h4>
+        </div>
       </div>
       <div>
-        <ul>
+        <ul className={css.navList}>
           <li>
-            <Link to="cast">Cast</Link>
+            <Link to="cast" className={css.navLink}>
+              Cast
+            </Link>
           </li>
           <li>
-            <Link to="reviews">Reviews</Link>
+            <Link to="reviews" className={css.navLink}>
+              Reviews
+            </Link>
           </li>
         </ul>
       </div>

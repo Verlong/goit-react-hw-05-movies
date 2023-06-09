@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react'; //
-
 import { getMovieCast } from 'api/get-api-key';
+import css from './cast.module.css';
 
 const Cast = () => {
   const [castList, setCastList] = useState([]);
@@ -11,11 +11,12 @@ const Cast = () => {
   }, [movieId]);
 
   return (
-    <ul>
+    <ul className={css.castList}>
       {castList.length > 0
         ? castList.map(({ id, name, profile_path, character }) => (
-            <li key={id}>
+            <li key={id} className={css.castItem}>
               <img
+                className={css.photoImg}
                 src={
                   profile_path
                     ? `https://image.tmdb.org/t/p/w200${profile_path}`
@@ -26,8 +27,8 @@ const Cast = () => {
                 width={120}
                 height={180}
               />
-              <h3>{name}</h3>
-              <p>{character}</p>
+              <h4 className={css.nameTitle}>{name}</h4>
+              <p className={css.character}>{character}</p>
             </li>
           ))
         : 'No one has left a review yet'}

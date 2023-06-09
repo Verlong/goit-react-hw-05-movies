@@ -1,0 +1,26 @@
+.topContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 0;
+}
+.topList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style: none;
+  gap: 24px;
+  padding: 24px;
+}
+
+.wellcomeTitle {
+  padding: 0 24px;
+}
+.popularTitle {
+  padding: 0 24px;
+}
+
+.topItem {
+  display: flex;
+  flex-direction: column;
+}

@@ -1,0 +1,41 @@
+body {
+  background-color: #001f3f;
+}
+.moviesContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.searchMovieList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  list-style: none;
+  justify-content: center;
+  padding: 0 40px;
+}
+.searchMovieItem {
+  width: 360px;
+  border: 2px solid #1479ea;
+  border-radius: 0.6em;
+  box-shadow: inset 0 0 10px rgba(20, 121, 234, 0.4),
+    0 0 9px 3px rgba(20, 121, 234, 0.1);
+  padding: 16px;
+}
+.searchMovieLink {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  color: aliceblue;
+
+  margin-bottom: 0;
+}
+
+.searchMovieImg {
+  margin-bottom: 16px;
+}
